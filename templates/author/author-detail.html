@@ -1,0 +1,15 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    <h1>AUTHOR: {{ author.first_name }},{{ author.last_name }}</h1><a href="{% url 'author_update' author.id %}">Upadate</a> or <a href="{% url 'author_delete' author.id %}">Delete</a>
+    <p>{{ author.date_of_birth }}-{% if author.date_of_death %}{{ author.date_of_death }}{% else %}{{ " " }}{% endif %}</p>
+
+    <div style="margin-left: 20px;margin-top: 20px">
+    <h4>Books Name: </h4>
+    {% for book in author.book_set.all %}
+        <hr>
+        <h3 style="color: green"><strong></strong>{{ book.title }}(#{{ book.id }})</h3>
+        <p>{{ book.summary }}</p>
+    {% endfor %}
+    </div>
+{% endblock %}
