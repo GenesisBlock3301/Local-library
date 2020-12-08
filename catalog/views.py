@@ -16,6 +16,8 @@ from django.views.generic.edit import CreateView,UpdateView,DeleteView
 #     return HttpResponse("hello world")
 
 """ permission for class base view """
+
+
 class MyView(PermissionRequiredMixin, View):
     permission_required = 'catalog.can_mark_returned'
     #for multiple permission
