@@ -84,6 +84,7 @@ class BookListView(LoginRequiredMixin,generic.ListView):
         return context
     """
 
+
 class BookDetailView(LoginRequiredMixin,generic.DetailView):
     model = Book
     template_name = 'book/book-detail.html'
@@ -100,6 +101,7 @@ def book_detail_view(request,id):
     return render(request,'book/book-detail.html',context={'book':book})
 """
 
+
 class AuthorListView(LoginRequiredMixin,generic.ListView):
     model = Author
     #own name for the book list in template view
@@ -107,9 +109,11 @@ class AuthorListView(LoginRequiredMixin,generic.ListView):
     template_name = 'author/author-list.html'
     paginate_by = 5
 
+
 class AuthorDetailView(generic.DetailView):
     model = Author
     template_name = 'author/author-detail.html'
+
 
 class LoanedBooksByUserListView(LoginRequiredMixin,generic.ListView):
     """ Gemeric class base view listing book on loan to current usr"""
@@ -119,6 +123,7 @@ class LoanedBooksByUserListView(LoginRequiredMixin,generic.ListView):
 
     def get_queryset(self):
         return BookInstance.objects.filter(borrow=self.request.user).filter(status__exact='0').order_by('due_back')
+
 
 class WhoLoanedBookShowlibrianList(LoginRequiredMixin,generic.ListView):
     model = BookInstance
@@ -163,10 +168,12 @@ class AuthorCreate(CreateView):
     initial = {"date_of_death":'05/01/2019'}
     template_name = 'author/author_form.html'
 
+
 class AuthorUpdate(UpdateView):
     model = Author
     fields = ['first_name','last_name','date_of_birth','date_of_death']
     template_name = 'author/author_form.html'
+
 
 class AuthorDelete(DeleteView):
     model = Author
@@ -176,15 +183,18 @@ class AuthorDelete(DeleteView):
 
 #for Book challenge
 
+
 class BookCreate(CreateView):
     model = Book
     fields = "__all__"
     template_name = 'book/book_form.html'
 
+
 class BookUpdate(UpdateView):
     model = Book
     fields = ['title','author','summary','isbn','genre','language']
     template_name = 'book/book_form.html'
+
 
 class BookDelete(DeleteView):
     model = Book
