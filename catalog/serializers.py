@@ -20,9 +20,6 @@ class AuthorsSerializer(serializers.ModelSerializer):
         model = Author
         fields = "__all__"
 
-    def create(self, validated_data):
-        return Author.objects.create(**validated_data)
-
 
 class BookInstanceSerializer(serializers.ModelSerializer):
     class Meta:
